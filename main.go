@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"fmt"
+//	"net/http"
 )
 
 func main(){
 	
 	type Input struct {
-		Name int64 `json:"af"`
 	    Result []struct{
 	    	Rtt float64 `json:"rtt"`
 	    } `json:"result"`	    
