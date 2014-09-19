@@ -6,31 +6,33 @@ import (
 	"fmt"
 )
 
-
 func main(){
-	
-	
-	// type Rtt struct{
-// 		Val float64
-// 	}
 	
 	type Input struct {
 		Name int64 `json:"af"`
 	    Result []struct{
-	    	Val float64 `json:"rtt"`
+	    	Rtt float64 `json:"rtt"`
 	    } `json:"result"`	    
 	}
+	
     t := 0
-	fi, err := ioutil.ReadFile("/Users/nick/Desktop/test.json")
-	out := []Input{}
-	err = json.Unmarshal([]byte(fi), &out)	
+	
+	input, err := ioutil.ReadFile("/Users/nick/Desktop/test.json")
+	
+	output := []Input{}
+	
+	err = json.Unmarshal([]byte(input), &out)	
+	
+	if err!=nil {
+		panic(err)
+	}
+	
 	for _, i := range out{
 		for _, j := range i.Result{
-			if j.Val > 60 {
+			if j.Rtt > 60 {
 				t++
 			}
 		}
 	}
 	fmt.Println(t)
-	fmt.Println(err)
 }
